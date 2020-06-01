@@ -6,6 +6,9 @@
   </head>
   <body>
     <script>
+    let win = 0;
+    let lose = 0;
+    let draw = 0;
       function computerPlay() {
         let chanceNumber = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
         switch (chanceNumber) {
@@ -32,15 +35,18 @@
       let computerSelection;
       function round(playerSelection, computerSelection) {
         if (playerSelection == computerSelection) {
+            draw++
           return "It is a draw!";
         } else {
           switch (playerSelection) {
             case 'rock':
               if (computerSelection == "scissors") {
+                  win++
                 return (
                   "You win! " + playerSelection + " beats " + computerSelection
                 );
               } else if (computerSelection == "paper") {
+                  lose++
                 return (
                   "You loose! " +
                   computerSelection +
@@ -52,10 +58,12 @@
               break;
             case 'scissors':
               if (computerSelection == "paper") {
+                  win++
                 return (
                   "You win! " + playerSelection + " beats " + computerSelection
                 );
               } else if (computerSelection == "rock") {
+                  lose++
                 return (
                   "You loose! " +
                   computerSelection +
@@ -66,11 +74,14 @@
               break;
             case 'paper':
               if (computerSelection == "rock") {
+                  win++
                 return (
                   "You win! " + playerSelection + " beats " + computerSelection
                 );
               } else if (computerSelection == "scissors") {
+                  lose++
                 return (
+                   
                   "You loose! " +
                   computerSelection +
                   " beats " +
@@ -85,6 +96,7 @@
       }
 
       function game() {
+        
         let i;
         for (i = 0; i < 6; i++) {
           playerInput = prompt("Choose rock, papers or scissors");
@@ -93,6 +105,7 @@
           //console.log(playerSelection);
           console.log(round(playerSelection, computerSelection));
         }
+        console.log('Score: You = ' + win + ' Computer = '+ lose + ' Draw = ' + draw)
       }
 
       game();
